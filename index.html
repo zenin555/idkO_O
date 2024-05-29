@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="idk.js"></script>
+    <script src="https://kit.fontawesome.com/7618ef178f.js" crossorigin="anonymous"></script>
+
+    <title>O _ O</title>
+</head>
+
+<body>
+    <div class="main">
+        <section id="owner_section">
+            <div class="owner_cards flex">
+                <div class="card">
+                    <div id="card_smb" class="symbol">♠︎</div>
+                    <div id="card_num" class="nums">10</div>
+                </div>
+                <div class="card flip-card click" onclick="flip(this)">
+                    <div class="innerCard">
+                        <div class="front">
+                            <div id="card_smb" class="symbol">♠︎</div>
+                            <div id="card_num" class="nums">J</div>
+                        </div>
+                        <div class="back"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="main_section" class="flex">
+            <div class="player card_table">
+                <div id="pls_card" class="innerCT flex">
+                    
+                </div>
+                <p>Your Card Here</p>
+            </div>
+            <div class="flex btns">
+                <div></div>
+                <button onclick="drawCard()" id="drawbtn" class="btn">Draw</button>
+                <div class="flex cfbtns">
+                    <button id="big" class="btn cf">BIG</button>
+                    <button id="small" class="btn cf">SMALL</button>
+                </div>
+            </div>
+            <div class="owner card_table">
+                <div id="owners_card" class="innerCT flex">
+
+                </div>
+                <p>Owner's Card</p>
+            </div>
+        </section>
+
+        <section id="pl_section"></section>
+    </div>
+</body>
+
+<script>
+    function flip(e) {
+        e.classList.toggle('backside')
+    } 
+</script>
+
+</html>
