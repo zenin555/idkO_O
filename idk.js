@@ -48,33 +48,80 @@ function deckShuffle(array) {
     return array
 }
 
+// 發牌
 function drawCard() {
     ownercard = document.getElementById('owners_card')
     plscard = document.getElementById('pls_card')
+    let announce = document.querySelector('.game-set')
     ownercard.innerHTML = ''
     plscard.innerHTML = ''
+    announce.innerHTML = `&nbsp;`
 
     owner = deck.shift()
-    console.log(`${owner.cardSymbol()}${owner.number}`)
-
     ownercard.innerHTML = `
-        <div class="card">
-            <div id="card_smb" class="symbol">${owner.cardSymbol()}</div>
-            <div id="card_num" class="nums">${owner.number}</div>
+        <div id='owner_tablecard' class="card flip-card click backside">
+            <div class="innerCard">
+                <div class="front">
+                    <div id="owner_card_smb" class="symbol">${owner.cardSymbol()}</div>
+                    <div id="owner_card_num" class="nums">${owner.number}</div>
+                </div>
+                <div class="back"></div>
+            </div>
         </div>
     `
 
     let player = deck.shift()
-    console.log(`${player.cardSymbol()}${player.number}`)
+    console.log(`${player.cardSymbol()}${player.number} vs ${owner.cardSymbol()}${owner.number}`)
 
     plscard.innerHTML = `
-        <div class="card">
-            <div id="card_smb" class="symbol">${player.cardSymbol()}</div>
-            <div id="card_num" class="nums">${player.number}</div>
+        <div class="card flip-card click">
+            <div class="innerCard">
+                <div class="front">
+                    <div id="pl_card_smb" class="symbol">${player.cardSymbol()}</div>
+                    <div id="pl_card_num" class="nums">${player.number}</div>
+                </div>
+                <div class="back"></div>
+            </div>
         </div>
     `
 }
 
+function onBig() {
+    let table_card = document.getElementById('owner_tablecard')
+    table_card.classList.toggle('backside')     // 翻面
+
+    let pl_num = parseInt(pl_card_num.innerHTML)
+    let ow_num = parseInt(owner_card_num.innerHTML)
+    
+    // console.log(`${pl_num}&${ow_num}`)
+    let announce = document.querySelector('.game-set')
+
+    if (pl_num > ow_num) {
+        announce.innerHTML = 'You Win!'
+    } else if (pl_num == ow_num) {
+        announce.innerHTML = 'Draw Again!'
+    } else {
+        announce.innerHTML = 'You Lose!'
+    }
+    
+}
+function onSmall() {
+    let table_card = document.getElementById('owner_tablecard')
+    table_card.classList.toggle('backside')     // 翻面
+
+    let pl_num = parseInt(pl_card_num.innerHTML)
+    let ow_num = parseInt(owner_card_num.innerHTML)
+    
+    let announce = document.querySelector('.game-set')
+
+    if (pl_num < ow_num) {
+        announce.innerHTML = 'You Win!'
+    } else if (pl_num == ow_num) {
+        announce.innerHTML = 'Draw Again!'
+    } else {
+        announce.innerHTML = 'You Lose!'
+    }
+}
 
 
 /*
