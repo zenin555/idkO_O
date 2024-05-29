@@ -14,9 +14,14 @@
 
 <body>
     <div class="main">
-        <section id="owner_section">
-            <div class="owner_info">
-                
+        <section class="owner_section">
+            <div class="owner_info flex">
+                <div class="owner_words">
+                    <p>Hehehe...</p>
+                </div>
+                <div class="owner_pic">
+                    <img src="img/crew_01.png">
+                </div>
             </div>
             <div class="owner_cards flex">
                 <div class="card flip-card click">
@@ -62,7 +67,33 @@
             </div>
         </section>
 
-        <section id="pl_section"></section>
+        <section class="pl_section">
+            <div class="pl_info flex">
+                <div class="pl_pic">
+                    <img src="img/demo.jpg" alt="">
+                </div>
+                <div id="pl_carddeck" class="pl_deck">
+                    <div class="card flip-card click">
+                        <div class="innerCard">
+                            <div class="front">
+                                <div id="card_smb" class="symbol">♠︎</div>
+                                <div id="card_num" class="nums">10</div>
+                            </div>
+                            <div class="back"></div>
+                        </div>
+                    </div>
+                    <div class="card flip-card click backside" onclick="flip(this)">
+                        <div class="innerCard">
+                            <div class="front">
+                                <div id="card_smb" class="symbol">♠︎</div>
+                                <div id="card_num" class="nums">J</div>
+                            </div>
+                            <div class="back"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </body>
 
