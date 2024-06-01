@@ -22,7 +22,7 @@ let deck = deckInit()
 deckShuffle(deck)
 console.log(deck)
 
-
+// 創建牌組
 function deckInit() {
     let deck = [];
     for (let symbol = 1; symbol <= 4; symbol++) {
@@ -31,10 +31,10 @@ function deckInit() {
             deck.push(x)
         }
     }
-
     return deck;
 }
 
+// 洗牌
 function deckShuffle(array) {
     let currentIndex = array.length
     while (currentIndex !== 0) {
@@ -59,7 +59,7 @@ function drawCard() {
 
     owner = deck.shift()
     ownercard.innerHTML = `
-        <div id='owner_tablecard' class="card flip-card click backside">
+        <div id="owner_tablecard" class="card flip-card click backside">
             <div class="innerCard">
                 <div class="front">
                     <div id="owner_card_smb" class="symbol">${owner.cardSymbol()}</div>
@@ -74,7 +74,7 @@ function drawCard() {
     console.log(`${player.cardSymbol()}${player.number} vs ${owner.cardSymbol()}${owner.number}`)
 
     plscard.innerHTML = `
-        <div class="card flip-card click">
+        <div id="pl_tablecard" class="card flip-card click backside">
             <div class="innerCard">
                 <div class="front">
                     <div id="pl_card_smb" class="symbol">${player.cardSymbol()}</div>
@@ -87,42 +87,65 @@ function drawCard() {
 }
 
 function onBig() {
-    let table_card = document.getElementById('owner_tablecard')
-    table_card.classList.toggle('backside')     // 翻面
+    let owner_table_card = document.getElementById('owner_tablecard')
+    let pl_table_card = document.getElementById('pl_tablecard')
+    owner_table_card.classList.toggle('backside')     // 翻面
+    pl_table_card.classList.toggle('backside')     // 翻面
 
     let pl_num = parseInt(pl_card_num.innerHTML)
     let ow_num = parseInt(owner_card_num.innerHTML)
     
     // console.log(`${pl_num}&${ow_num}`)
+    let speech = document.querySelector('.owner_words')
     let announce = document.querySelector('.game-set')
 
     if (pl_num > ow_num) {
         announce.innerHTML = 'You Win!'
+        speech.innerHTML = `<p>可惡！！！</p>`
+        setTimeout(defaultWords, 5000)
     } else if (pl_num == ow_num) {
         announce.innerHTML = 'Draw Again!'
+        speech.innerHTML = `<p>再來！</p>`
+        setTimeout(defaultWords, 5000)
     } else {
         announce.innerHTML = 'You Lose!'
+        speech.innerHTML = `<p>哈哈哈哈哈</p>`
+        setTimeout(defaultWords, 5000)
     }
     
 }
 function onSmall() {
-    let table_card = document.getElementById('owner_tablecard')
-    table_card.classList.toggle('backside')     // 翻面
+    let owner_table_card = document.getElementById('owner_tablecard')
+    let pl_table_card = document.getElementById('pl_tablecard')
+    owner_table_card.classList.toggle('backside')     // 翻面
+    pl_table_card.classList.toggle('backside')     // 翻面
 
     let pl_num = parseInt(pl_card_num.innerHTML)
     let ow_num = parseInt(owner_card_num.innerHTML)
     
+    let speech = document.querySelector('.owner_words')
     let announce = document.querySelector('.game-set')
 
     if (pl_num < ow_num) {
         announce.innerHTML = 'You Win!'
+        speech.innerHTML = `<p>可惡！！！</p>`
+        setTimeout(defaultWords, 5000)
     } else if (pl_num == ow_num) {
         announce.innerHTML = 'Draw Again!'
+        speech.innerHTML = `<p>再來！</p>`
+        setTimeout(defaultWords, 5000)
     } else {
         announce.innerHTML = 'You Lose!'
+        speech.innerHTML = `<p>哈哈哈哈哈</p>`
+        setTimeout(defaultWords, 5000)
     }
 }
 
+
+function defaultWords() {
+    let speech = document.querySelector('.owner_words')
+    speech.innerHTML = `<p>Hehehe...</p>`
+}
 
 /*
 let card = cardInit()
