@@ -14,12 +14,13 @@
 
 <body>
     <div class="main">
+        <a class="go-back" href="intro.html"><img src="img/back.png"></a>
         <section class="owner_section">
             <div class="owner_info flex">
                 <div class="owner_words">
                     <p>Hehehe...</p>
                 </div>
-                <div class="owner_pic">
+                <div class="owner_pic" onmouseenter="annoyed()">
                     <img src="img/crew_01.png">
                 </div>
             </div>
@@ -45,16 +46,15 @@
             </div>
         </section>
 
-        <section id="main_section" class="flex">
+        <section id="main_section" class="flex main_table">
             <div class="player card_table">
                 <div id="pls_card" class="innerCT flex">
-                    
                 </div>
                 <p>Your Card Here</p>
             </div>
             <div class="flex btns">
                 <div class="game-set">&nbsp;</div>
-                <button onclick="drawCard()" id="drawbtn" class="btn">Draw</button>
+                <button onclick="drawCard()" id="drawbtn" class="draw btn"><span>Draw</span></button>
                 <div class="flex cfbtns">
                     <button onclick="onBig()" id="big" class="btn cf">BIG</button>
                     <button onclick="onSmall()" id="small" class="btn cf">SMALL</button>
@@ -66,8 +66,28 @@
                 <p>Owner's Card</p>
             </div>
         </section>
+        <!-- <section id="main_section" class="flex main_mob">
+            <div class="flex btns">
+                <div class="game-set">&nbsp;</div>
+                <button onclick="drawCard()" id="drawbtn" class="draw btn"><span>Draw</span></button>
+                <div class="flex cfbtns">
+                    <button onclick="onBig()" id="big" class="btn cf">BIG</button>
+                    <button onclick="onSmall()" id="small" class="btn cf">SMALL</button>
+                </div>
+            </div>
+            <div class="player card_table">
+                <div id="pls_card" class="innerCT flex">
+                </div>
+                <p>Your Card Here</p>
+            </div>
+            <div class="owner card_table">
+                <div id="owners_card" class="innerCT flex">
+                </div>
+                <p>Owner's Card</p>
+            </div>
+        </section> -->
 
-        <section class="pl_section">
+        <!-- <section class="pl_section">
             <div class="pl_info flex">
                 <div class="pl_pic">
                     <img src="img/demo.jpg" alt="">
@@ -93,7 +113,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
     </div>
 </body>
 

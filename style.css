@@ -30,20 +30,107 @@ div {
 p {
     margin: 10px 0; 
 }
-
+@media (max-width: 768px) {
+    section {
+        padding: 20px 0;
+    }
+}
 
 .main {
     max-width: 1024px;
     margin: auto;
-    padding: 0 20px;
+    padding: 20px;
 }
 .flex {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
 }
+.go-back img {
+    width: 50px;
+}
+
+
+
+/*--------------------------------------------
+
+                Intro頁面 Begin
+
+--------------------------------------------*/
+.banner {
+    background-image: url(img/bn1.png);
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 70vh;
+    width: 100%;
+}
+.banner img {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+}
+.gameCard {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 8px;
+    flex-direction: column;
+    height: 40vh;
+    margin: 20px 0;
+    padding: 40px;
+    position: relative;
+    width: 100%;
+}
+.gameCard::before {
+    content: '';
+    background-color: var(--br1);
+    border-radius: 8px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    mix-blend-mode: multiply;
+}
+.gameCard:hover::before {
+    opacity: .2;
+    transition: all .8s ease-in-out;
+}
+.gameCard.game01 {
+    background-image: url(img/shipIntro.jpg);
+}
+.gameSubTitle, .gameTitle {
+    transform: translateY(20px);
+    text-align: center;
+    visibility: hidden;
+}
+.gameCard:hover .gameSubTitle, .gameCard:hover .gameTitle {
+    transform: translateY(0px);
+    transition: .8s ease-in-out;
+    visibility: initial;
+}
+.gameTitle {
+    font-size: 40px;
+    margin: 10px 0;
+}
+/*--------------------------------------------
+
+                Intro頁面 End
+
+--------------------------------------------*/
+
+
+/*---------------------------------------
+
+                發牌區塊
+
+---------------------------------------*/
 .card_table {
-    flex: 1;
+    /* flex: 1; */
+    width: 25%;
     height: 100%;
     padding: 20px 40px;
     text-align: center;
@@ -60,14 +147,14 @@ p {
 .owner .innerCT {
     border-color: var(--b1);
 }
-
 .btns.flex {
-    flex: 2;
+    width: 40%;
     flex-direction: column;
     max-width: 200px;
     margin: 0 20px;
 }
 .cfbtns.flex {
+    flex-wrap: nowrap;
     justify-content: space-between;
 }
 .btn {
@@ -78,7 +165,7 @@ p {
     font-family: 'Cubic11';
     font-size: 24px;
     margin: 5px;
-    padding: 20px;
+    padding: 15px 20px;
     width: 100%;
 }
 .btn:hover {
@@ -88,7 +175,32 @@ p {
     background: var(--y1);
     color: var(--br2);
     font-size: 16px;
-    width: 95px;
+    min-width: 92px;
+    width: auto;
+}
+.btn.draw {
+    background-image: url(img/card_back.png);
+    width: 120px;
+    height: 165px;
+}
+.btn.draw span {
+    background-color: rgba(255,251,204, .77);
+    border-radius: 5px;
+    color: var(--br1);
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .main_table {
+        flex-direction: column-reverse;
+    }
+    .card_table {
+        width: 100%;
+        padding: 20px;
+    }
+    .btns.flex {
+        width: 100%;
+    }
 }
 
 /*---------------------------------------
@@ -96,25 +208,33 @@ p {
                 莊家區塊
 
 ---------------------------------------*/
+.owner_section {
+    position: relative;
+}
 .owner_info {
     align-items: stretch;
     /* justify-content: space-between; */
 }
 .owner_words {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     padding: 20px 40px;
     position: relative;
     width: 60%;
+
     /* height: 100%; */
 }
 .owner_words p {
     color: var(--br1);
     font-size: 20px;
-    font-style: italic;
+    /* font-style: italic; */
     position: relative;
     /* top: 45px; */
     z-index: 1;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3s steps(7);
 }
 .owner_words::before {
     content: '';
@@ -123,6 +243,7 @@ p {
     background-size: contain;
     display: block;
     position: absolute;
+    left: -40px;
     top: -20px;
     width: 100%;
     height: 100%;
@@ -136,6 +257,36 @@ p {
     object-fit: cover;
     width: 100%;
 }
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .owner_words {
+        padding: 0;
+        width: 100%;
+        height: 30vh;
+    }
+    .owner_words::before {
+        left: -10px;
+        top: 0;
+    }
+    .owner_words p {
+        font-size: 16px;
+        margin: 0;
+        padding: 20px;
+    }
+    .owner_pic {
+        width: 35%;
+        position: absolute;
+        bottom: 0;
+        right: -10px;
+    }
+}
+
 
 /*---------------------------------------
 
@@ -171,7 +322,6 @@ p {
                 卡牌樣式
 
 ---------------------------------------*/
-
 .card {
     /* background: var(--y1); */
     border-radius: 8px;
@@ -205,7 +355,7 @@ p {
 .back {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    background: var(--b2);
+    background-image: url(img/card_back.png);
     transform: rotateY(180deg);
 }
 
@@ -253,7 +403,7 @@ p {
     transform: translate(-50%, -50%);
 }
 
-.back::before {
+/* .back::before {
     content: '';
     border: 3px dashed var(--y1);
     border-radius: 8px;
@@ -264,4 +414,52 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+} */
+
+
+.ownercard {
+    animation-name: MoveOwnerCard;
+    animation-duration: 1s;
+}
+.playercard {
+    animation-name: MovePlCard;
+    animation-duration: 1s;
+}
+
+@media (max-width: 768px) {
+    .ownercard {
+        animation-name: MoveOwnerCard_mob;
+        animation-duration: 1s;
+    }
+    .playercard {
+        animation-name: MovePlCard_mob;
+        animation-duration: 1s;
+    }
+}
+
+@keyframes MoveOwnerCard {
+    from {
+        transform: translate(-239%, 6px);
+    }
+    to {
+        transform: translate(0%, 0px);
+    }
+}
+@keyframes MovePlCard {
+    from {
+        transform: translate(238%, 6px);
+    }
+    to {
+        transform: translate(0%, 0px);
+    }
+}
+@keyframes MoveOwnerCard_mob {
+    from {
+        transform: translate(0%, 0px);
+    }
+}
+@keyframes MovePlCard_mob {
+    from {
+        transform: translate(0%, 0px);
+    }
 }

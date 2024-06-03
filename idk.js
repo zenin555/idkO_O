@@ -20,6 +20,7 @@ class CardDeck {
 
 let deck = deckInit()
 deckShuffle(deck)
+let score = 0;
 console.log(deck)
 
 // 創建牌組
@@ -69,6 +70,7 @@ function drawCard() {
             </div>
         </div>
     `
+    owner_tablecard.classList.toggle('ownercard')
 
     let player = deck.shift()
     console.log(`${player.cardSymbol()}${player.number} vs ${owner.cardSymbol()}${owner.number}`)
@@ -84,8 +86,10 @@ function drawCard() {
             </div>
         </div>
     `
+    pl_tablecard.classList.toggle('playercard')
 }
 
+// 賭大
 function onBig() {
     let owner_table_card = document.getElementById('owner_tablecard')
     let pl_table_card = document.getElementById('pl_tablecard')
@@ -96,24 +100,17 @@ function onBig() {
     let ow_num = parseInt(owner_card_num.innerHTML)
     
     // console.log(`${pl_num}&${ow_num}`)
-    let speech = document.querySelector('.owner_words')
-    let announce = document.querySelector('.game-set')
-
     if (pl_num > ow_num) {
-        announce.innerHTML = 'You Win!'
-        speech.innerHTML = `<p>可惡！！！</p>`
-        setTimeout(defaultWords, 5000)
+        winRound();
     } else if (pl_num == ow_num) {
-        announce.innerHTML = 'Draw Again!'
-        speech.innerHTML = `<p>再來！</p>`
-        setTimeout(defaultWords, 5000)
+        tieRound()
     } else {
-        announce.innerHTML = 'You Lose!'
-        speech.innerHTML = `<p>哈哈哈哈哈</p>`
-        setTimeout(defaultWords, 5000)
+        loseRound()
     }
     
 }
+
+// 賭小
 function onSmall() {
     let owner_table_card = document.getElementById('owner_tablecard')
     let pl_table_card = document.getElementById('pl_tablecard')
@@ -123,60 +120,56 @@ function onSmall() {
     let pl_num = parseInt(pl_card_num.innerHTML)
     let ow_num = parseInt(owner_card_num.innerHTML)
     
-    let speech = document.querySelector('.owner_words')
-    let announce = document.querySelector('.game-set')
 
     if (pl_num < ow_num) {
-        announce.innerHTML = 'You Win!'
-        speech.innerHTML = `<p>可惡！！！</p>`
-        setTimeout(defaultWords, 5000)
+        winRound();
     } else if (pl_num == ow_num) {
-        announce.innerHTML = 'Draw Again!'
-        speech.innerHTML = `<p>再來！</p>`
-        setTimeout(defaultWords, 5000)
+        tieRound()
     } else {
-        announce.innerHTML = 'You Lose!'
-        speech.innerHTML = `<p>哈哈哈哈哈</p>`
-        setTimeout(defaultWords, 5000)
+        loseRound()
     }
 }
 
+
+
+/* -----------------------------------
+
+        角色對話&計分
+
+----------------------------------- */
 
 function defaultWords() {
     let speech = document.querySelector('.owner_words')
     speech.innerHTML = `<p>Hehehe...</p>`
 }
-
-/*
-let card = cardInit()
-cardShuffle(card);
-
-function cardInit() {
-    let card = []
-    for (cat of ["♠︎", "♥︎", "♦︎", "♣︎"]) {
-        for (i = 2; i <= 10; i++) {
-            card.push(`${cat}${i}`)
-        }
-        for (symbol of ['J', 'Q', 'K', 'A']) {
-            card.push(`${cat}${symbol}`)
-        }
-    }
-    return card;
+function annoyed() {
+    let speech = document.querySelector('.owner_words')
+    speech.innerHTML = `<p>嘿！不要把你的手在我臉前面揮來揮去的！</p>`
+    setTimeout(defaultWords, 7000)
 }
-function cardShuffle(card) {
-    for (i = card.length - 1; i > 0; i--) {
-        let x = parseInt(Math.random() * (i + 1))
-        let temp = card[i]
-        card[i] = card[x]
-        card[x] = temp
-    }
-    console.log(card);
-}
+function winRound() {
+    let speech = document.querySelector('.owner_words')
+    let announce = document.querySelector('.game-set')
 
-function drawCard() {
-    let owner = card.splice(0, 1);
-    let player = card.splice(0, 1)
-    console.log(owner)
-    console.log(player)
-} 
-*/
+    announce.innerHTML = 'You Win!'
+    speech.innerHTML = `<p>可惡！！！</p>`
+    setTimeout(defaultWords, 5000)
+    score += 1;
+    return score;
+}
+function loseRound() {
+    let speech = document.querySelector('.owner_words')
+    let announce = document.querySelector('.game-set')
+
+    announce.innerHTML = 'You Lose!'
+    speech.innerHTML = `<p>哈哈哈哈哈</p>`
+    setTimeout(defaultWords, 5000)
+}
+function tieRound() {
+    let speech = document.querySelector('.owner_words')
+    let announce = document.querySelector('.game-set')
+
+    announce.innerHTML = 'Draw Again!'
+    speech.innerHTML = `<p>再來！</p>`
+    setTimeout(defaultWords, 5000)
+}
