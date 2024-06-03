@@ -173,3 +173,10 @@ function tieRound() {
     speech.innerHTML = `<p>再來！</p>`
     setTimeout(defaultWords, 5000)
 }
+
+
+/* -----------------------------------
+
+        每日運勢轉盤
+
+----------------------------------- */
